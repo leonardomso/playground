@@ -1,9 +1,10 @@
 overwrite: true
-schema: "./src/graphql/**/*.ts"
+schema: "http://localhost:4000/graphql"
 documents: null
 generates:
-    src/types/types.d.ts:
-        plugins:
-            - "typescript-common"
-            - "typescript-resolvers"
-            - "typescript-server"
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-mongodb"
+ 

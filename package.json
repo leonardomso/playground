@@ -5,7 +5,8 @@
     "main": "index.ts",
     "scripts": {
         "start": "nodemon",
-        "generate": "gql-gen"
+        "generate": "graphql-codegen --config codegen.yml",
+        "generate:watch": "nodemon -e graphql --exec yarn generate"
     },
     "keywords": [
         "graphql",
@@ -16,33 +17,31 @@
     "license": "MIT",
     "dependencies": {
         "bcrypt-nodejs": "^0.0.3",
-        "dotenv": "^7.0.0",
-        "graphql": "^14.2.1",
+        "dotenv": "^8.0.0",
+        "graphql": "^14.3.0",
         "graphql-tag": "^2.10.1",
         "graphql-tools": "^4.0.4",
         "graphql-yoga": "^1.17.4",
-        "graphqlgen": "^0.6.0-rc9",
         "jsonwebtoken": "^8.5.0",
         "merge-graphql-schemas": "^1.5.8",
         "moment": "^2.24.0",
-        "mongodb": "^3.1.13",
-        "mongoose": "^5.4.22",
-        "typescript": "^3.4.2",
+        "mongodb": "^3.2.5",
+        "mongoose": "^5.5.10",
+        "typescript": "^3.4.5",
         "validator": "^10.11.0"
     },
     "devDependencies": {
-        "@types/graphql": "^14.0.5",
-        "@types/mongodb": "^3.1.19",
-        "@types/mongoose": "^5.3.12",
-        "@types/node": "^11.9.5",
+        "@graphql-codegen/cli": "^1.2.0",
+        "@types/graphql": "^14.2.0",
+        "@types/mongodb": "^3.1.27",
+        "@types/mongoose": "^5.5.1",
+        "@types/node": "^12.0.2",
         "babel-runtime": "^6.26.0",
-        "graphql-code-generator": "^0.16.1",
-        "graphql-codegen-typescript-common": "0.16.1",
-        "graphql-codegen-typescript-mongodb": "^0.16.1",
-        "graphql-codegen-typescript-resolvers": "^0.16.1",
-        "graphql-codegen-typescript-server": "^0.16.1",
-        "nodemon": "^1.18.10",
+        "nodemon": "^1.19.0",
         "rimraf": "^2.6.3",
-        "ts-node": "^8.0.2"
+        "ts-node": "^8.1.0",
+        "@graphql-codegen/typescript": "1.2.0",
+        "@graphql-codegen/typescript-resolvers": "1.2.0",
+        "@graphql-codegen/typescript-mongodb": "1.2.0"
     }
 }
