@@ -1,0 +1,5 @@
+packages/app
+packages/server/node_modules
+packages/web/node_modules
+packages/web/build
+.vscode
