@@ -1,8 +1,10 @@
 # The HTTP endpoint for your Prisma API
-endpoint: http://localhost:4466
+endpoint: ${env:PRISMA_ENDPOINT}
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
+
+secret: ${env:PRISMA_MANAGEMENT_API_SECRET}
 
 # The datamodel needs to be configured specifically for MongoDB
 databaseType: document
@@ -11,3 +13,7 @@ databaseType: document
 generate:
   - generator: typescript-client
     output: ./generated/prisma-client/
+
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
