@@ -1,0 +1,13 @@
+# The HTTP endpoint for your Prisma API
+endpoint: http://localhost:4466
+
+# Points to the file that contains your datamodel
+datamodel: datamodel.prisma
+
+# The datamodel needs to be configured specifically for MongoDB
+databaseType: document
+
+# Specifices language and location for the generated Prisma client
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
