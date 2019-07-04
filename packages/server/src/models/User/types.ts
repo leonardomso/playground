@@ -1,5 +1,8 @@
 export interface UserType {
-    name?: string;
-    email: string;
-    password: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+  genre: string;
 }

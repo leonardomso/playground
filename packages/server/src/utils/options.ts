@@ -5,6 +5,6 @@ export const options = {
     playground: "/playground",
     cors: {
         credentials: true,
-        origin: ["http://localhost:8000"] // App URL.
+        origin: ["http://localhost:8000"]
     }
 };

@@ -1,48 +1,45 @@
-require("dotenv").config();
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt-nodejs";
+import { hash, compare } from 'bcrypt';
+import { sign, verify } from 'jsonwebtoken';
 
-const { SECRET, EXPIRES_IN } = process.env;
+export const APP_SECRET = process.env.APP_SECRET;
 
-export const getTokenFromRequest = req =>
-    req.body.token || req.params.token || req.headers.authorization;
+interface Token {
+  userId: string;
+}
 
-export const createToken = payload =>
-    jwt.sign(payload, SECRET, {
-        expiresIn: EXPIRES_IN
-    });
+interface Context {
+  request: {
+    get: (header: string) => any;
+  };
+}
 
-export const verifyToken = (token, callback) => {
-    jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-            return callback(err);
-        }
+let errorMessage = `The "APP_SECRET" env variable isn't set.`;
 
-        return callback(null, decoded);
-    });
+export const getUserId = (context: Context) => {
+  const Authorization = context.request.get('Authorization');
+
+  if (!APP_SECRET) {
+    throw new Error(errorMessage);
+  }
+
+  if (Authorization) {
+    const token = Authorization.replace('Bearer ', '');
+    const verifiedToken = verify(token, APP_SECRET) as Token;
+    return verifiedToken && verifiedToken.userId;
+  }
+
+  return null;
 };
 
-export const encryptPassword = (password, callback) => {
-    // Generate a salt then run callback
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) {
-            return callback(err);
-        }
+export const getToken = (userId: string) => {
+  if (!APP_SECRET) {
+    throw new Error(errorMessage);
+  }
 
-        // Hash (encrypt) our password using the salt
-        return bcrypt.hash(password, salt, null, (err2, hash) => {
-            if (err2) {
-                return callback(err2);
-            }
-            return callback(null, hash);
-        });
-    });
+  return sign({ userId }, APP_SECRET);
 };
 
-export const comparePassword = (currentPassword, candidatePassword, callback) =>
-    bcrypt.compare(candidatePassword, currentPassword, (err, isMatch) => {
-        if (err) {
-            return callback(err);
-        }
-        return callback(null, isMatch);
-    });
+export const getHashedPassword = (password: string) => hash(password, 10);
+
+export const comparePassword = (password: string, confirm: string) =>
+  compare(password, confirm);
