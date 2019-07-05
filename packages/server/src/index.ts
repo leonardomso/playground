@@ -7,6 +7,11 @@ import schema from "./graphql/";
 import { options } from "./utils/options";
 import { context } from "./utils/context";
 
+const server = new GraphQLServer({
+    schema,
+    context
+});
+
 // Connect to MongoDB with Mongoose.
 mongoose
     .connect(process.env.URI, {
@@ -15,11 +20,6 @@ mongoose
     })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.log(err));
-
-const server = new GraphQLServer({
-    schema,
-    context
-});
 
 server.start(options, ({ port }) => {
     console.log(`🚀 GraphQL Server running at http://localhost:${port}/playground`);
