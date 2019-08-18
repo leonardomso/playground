@@ -16,9 +16,7 @@
     "dev": "concurrently -n web,server --kill-others \"yarn web\" \"yarn server\"",
     "dev:web": "concurrently -n web,server --kill-others \"yarn web\" \"yarn server\"",
     "generate:web": "yarn workspace @mu/web generate",
-    "generate:server": "yarn workspace @mu/server generate",
-    "test:web": "yarn workspace @mu/web test",
-    "test:server": "yarn workspace @mu/server test"
+    "generate:server": "yarn workspace @mu/server generate"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
