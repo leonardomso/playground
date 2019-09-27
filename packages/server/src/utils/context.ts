@@ -1,12 +1,13 @@
 import { PubSub } from "graphql-yoga";
 
-import { models } from "./models";
-import { getToken } from "./auth";
+import { getUserId } from "./auth";
 
 const pubsub = new PubSub();
 
-export const context = ({ request }) => ({
-	models,
-	pubsub,
-	token: getToken(request)
-});
+export const context = async ({ request }) => {
+  const token = request.headers.authorization
+    ? request.headers.authorization
+    : "";
+  const currentUser = await getUserId(token);
+  return { currentUser, pubsub };
+};
