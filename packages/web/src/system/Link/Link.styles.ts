@@ -1,0 +1,24 @@
+import { Link } from "react-router-dom";
+
+import { styled } from "../theme";
+
+interface LinkProps {
+  marginTop?: number;
+};
+
+const StyledLink = styled(Link)<LinkProps>`
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: ${({ theme }) => theme.color.primary};
+  text-decoration: none;
+  margin-top: ${({ marginTop }) => marginTop}px;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export default StyledLink;

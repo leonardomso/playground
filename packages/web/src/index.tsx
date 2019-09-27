@@ -1,32 +1,30 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { ApolloProvider } from "@apollo/react-hooks";
 
-import App from "./components/App";
-import * as serviceWorker from "./serviceWorker";
+import Routes from "./routes/";
+import * as serviceWorker from './serviceWorker';
+import client from "./graphql/client";
 
-import { theme } from "./styles/Theme/Theme";
-import reset from "./styles/constants/reset";
+import { theme } from "./system/theme";
+import reset from "./system/reset";
 
 const GlobalStyle = createGlobalStyle`${reset}`;
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
-	<Fragment>
-		<BrowserRouter>
-			<ThemeProvider theme={theme}>
-				<Switch>
-					<Route exact path="/" component={App} history={history} />
-				</Switch>
-			</ThemeProvider>
-		</BrowserRouter>
-		<GlobalStyle />
-	</Fragment>, 
-	document.getElementById("root")
-);
+  <Fragment>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <Routes history={history} />
+      </ThemeProvider>
+    </ApolloProvider>
+    <GlobalStyle />
+  </Fragment>,
+  document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
