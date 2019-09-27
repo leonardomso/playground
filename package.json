@@ -20,8 +20,9 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "lint-staged": "^8.1.5",
-    "prettier": "^1.16.4",
-    "typescript": "^3.4.3"
+    "@types/node": "^12.7.3",
+    "@types/graphql": "^14.5.0",
+    "@types/styled-components": "^4.1.19",
+    "typescript": "^3.6.2"
   }
 }
