@@ -3,8 +3,6 @@ import { UserError } from "graphql-errors";
 
 import UserModel from "./UserModel";
 
-import { comparePassword } from "../../utils/auth";
-
 const UserLoader = {
   currentUser: async ({ req }) => {
     if (!req.session.userId) {

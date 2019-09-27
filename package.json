@@ -4,19 +4,13 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/styled-components",
-      "**/styled-components/**"
     ]
   },
   "scripts": {
-    "web": "yarn workspace @mu/web start",
-    "server": "yarn workspace @mu/server start",
-    "dev": "concurrently -n web,server --kill-others \"yarn web\" \"yarn server\"",
-    "dev:web": "concurrently -n web,server --kill-others \"yarn web\" \"yarn server\"",
-    "generate:web": "yarn workspace @mu/web generate",
-    "generate:server": "yarn workspace @mu/server generate"
+    "start:server": "yarn workspace @mu/server start",
+    "start:web": "yarn workspace @mu/web start",
+    "start:dev": "concurrently -n web,server --kill-others \"yarn start:web\" \"yarn start:server\"",
+    "dev:web": "concurrently -n web,server --kill-others \"yarn start:web\" \"yarn start:server\""
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
