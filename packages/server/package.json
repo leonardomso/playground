@@ -1,49 +1,47 @@
 {
-	"name": "@mu/server",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"start": "nodemon",
-		"test": "jest",
-		"test:watch": "yarn run test --watch",
-		"test:cover": "yarn run test --coverage"
-	},
-	"keywords": [
-		"react",
-		"typescript",
-		"apollo",
-		"graphql",
-		"typescript",
-		"jwt"
-	],
-	"author": "Leonardo Maldonado <leonardomso11@gmail.com>",
-	"license": "MIT",
-	"dependencies": {
-    "apollo-server-express": "^2.9.4",
-    "bcrypt": "^3.0.6",
+  "name": "@mu/server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "jest",
+    "test:watch": "yarn run test --watch",
+    "test:cover": "yarn run test --coverage"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "apollo",
+    "graphql",
+    "typescript",
+    "jwt"
+  ],
+  "author": "Leonardo Maldonado <leonardomso11@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.3",
+    "@types/graphql": "^14.5.0",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/mongodb": "^3.5.2",
+    "@types/mongoose": "^5.7.6",
+    "@types/node": "^13.9.2",
+    "nodemon": "^2.0.2",
+    "apollo-server-express": "^2.11.0",
+    "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.16.2",
-    "graphql": "^14.5.8",
+    "express-session": "^1.17.0",
+    "graphql": "^14.6.0",
     "graphql-errors": "^2.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.1",
-    "nexus": "^0.11.7",
-    "uuid": "^3.3.3"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/dotenv": "^6.1.1",
-    "@types/express": "^4.17.1",
-    "@types/graphql": "^14.5.0",
-    "@types/jsonwebtoken": "^8.3.3",
-    "@types/mongodb": "^3.3.1",
-    "@types/mongoose": "^5.5.16",
-    "@types/node": "^12.7.3",
-    "nodemon": "^1.19.2",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.6.2"
+    "mongoose": "^5.9.5",
+    "nexus": "^0.12.0-rc.13",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3",
+    "uuid": "^7.0.2"
   }
 }
