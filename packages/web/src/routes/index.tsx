@@ -1,41 +1,18 @@
 import React from "react";
-import { History } from "history";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import App from "../components/App/App";
-import Login from "../components/Login/Login";
+import App from "../modules/App/App";
+import Login from "../modules/Login/Login";
 
-interface RoutesProps {
-  history: History;
-}
+interface RoutesProps {}
 
-const Routes: React.FC<RoutesProps> = ({ history }) => (
+const Routes: React.FC<RoutesProps> = () => (
   <BrowserRouter>
     <Switch>
-      <Route
-        exact
-        path="/"
-        component={App}
-        history={history}
-      />
-      <Route
-        exact
-        path="/login"
-        component={Login}
-        history={history}
-      />
-      <Route
-        exact
-        path="/cadastrar"
-        component={Login}
-        history={history}
-      />
-      <Route
-        exact
-        path="/recuperar"
-        component={Login}
-        history={history}
-      />
+      <Route exact path="/" component={App} />
+      <Route exact path="/signin" component={Login} />
+      <Route exact path="/signup" component={Login} />
+      <Route exact path="/forgot" component={Login} />
     </Switch>
   </BrowserRouter>
 );

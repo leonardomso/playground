@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "name": "mu",
+  "public": true,
+  "alias": ["mu.now.sh"],
+  "builds": [
+    {
+      "src": "packages/web/package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "packages/server/src/index.ts",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/graphql",
+      "dest": "/packages/server/src/index.ts"
+    },
+    {
+      "src": "^/static/(.*)",
+      "dest": "/packages/web/static/$1"
+    },
+    {
+      "src": "^/favicon.ico",
+      "dest": "/packages/web/favicon.ico"
+    },
+    {
+      "src": "^/asset-manifest.json",
+      "dest": "/packages/web/asset-manifest.json"
+    },
+    {
+      "src": "^/manifest.json",
+      "dest": "/packages/web/manifest.json"
+    },
+    {
+      "src": "^/precache-manifest.(.*)",
+      "dest": "/packages/web/precache-manifest.$1"
+    },
+    {
+      "src": "^/service-worker.js",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      },
+      "dest": "/packages/web/service-worker.js"
+    },
+    {
+      "src": "^/(.*)",
+      "dest": "/packages/web/$1"
+    },
+    {
+      "src": "^/(.*)",
+      "dest": "/packages/web/index.html"
+    }
+  ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "REACT_APP_SERVER": "https://mu.now.sh/graphql",
+      "GRAPHQL_ENDPOINT": "graphql",
+      "PLAYGROUND_ENDPOINT": "playground",
+      "PORT": "4000",
+      "API_SECRET": "SUPER_SECRET_KEY"
+    }
+  },
+  "env": {
+    "GRAPHQL_ENDPOINT": "graphql",
+    "PLAYGROUND_ENDPOINT": "playground",
+    "PORT": "4000",
+    "API_SECRET": "SUPER_SECRET_KEY"
+  }
+}

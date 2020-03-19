@@ -6,26 +6,26 @@ interface FormProps {
   onSubmit?: (e?: React.FormEvent<HTMLFormElement> | undefined) => void;
   width?: number | string;
   height?: number | string;
-	maxWidth?: number;
-	maxHeight?: number;
-	backgroundColor?: string;
-};
+  maxWidth?: number;
+  maxHeight?: number;
+  backgroundColor?: string;
+}
 
 const Form: React.FC<FormProps> = ({
   onSubmit,
-  width, 
-  height, 
-  maxWidth, 
-  maxHeight, 
+  width,
+  height,
+  maxWidth,
+  maxHeight,
   backgroundColor,
   children
 }) => (
-  <StyledForm 
+  <StyledForm
     onSubmit={onSubmit}
-    width={width} 
-    height={height} 
-    maxWidth={maxWidth} 
-    maxHeight={maxHeight} 
+    width={width}
+    height={height}
+    maxWidth={maxWidth}
+    maxHeight={maxHeight}
     backgroundColor={backgroundColor}
   >
     {children}

@@ -1,13 +1,20 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
-import StyledError from "./Error.styles";
+import { ErrorContainer, ErrorText } from "./Error.styles";
 
 interface ErrorProps {
-  onError: string;
-};
+  error: string | undefined;
+  mt?: number;
+}
 
-const Error: React.FC<ErrorProps> = ({ onError }) => (
-  <StyledError>{onError}</StyledError>
+const Error: React.FC<ErrorProps> = ({ error, mt }) => (
+  <ErrorContainer mt={mt}>
+    <FontAwesomeIcon icon={faExclamationTriangle} size="sm" color="#fc3d28" />
+
+    <ErrorText mt={mt}>{error}</ErrorText>
+  </ErrorContainer>
 );
 
 export default Error;

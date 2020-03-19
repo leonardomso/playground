@@ -5,11 +5,15 @@ import StyledLink from "./Link.styles";
 interface LinkProps {
   to: string;
   message: string;
-  marginTop?: number;
-};
+  mt?: number;
+  fontSize?: number;
+  color?: string;
+}
 
-const Link: React.FC<LinkProps> = ({ to, message, marginTop }) => (
-  <StyledLink to={to} marginTop={marginTop}>{message}</StyledLink>
+const Link: React.FC<LinkProps> = ({ to, message, mt, fontSize, color }) => (
+  <StyledLink to={to} mt={mt} fontSize={fontSize} color={color}>
+    {message}
+  </StyledLink>
 );
 
 export default Link;

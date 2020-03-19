@@ -1,35 +1,53 @@
-import { styled } from "../theme";
+import styled, { css } from "styled-components";
 
 interface ButtonProps {
-  type: string;
+  type: "button" | "submit" | "reset";
+  variant?: "primary" | "secondary" | "minimal";
+  onClick?: any;
+  isSubmitting?: boolean;
+  submittingText?: string;
+  isDisabled?: boolean;
+  isSelected?: boolean;
+  ariaLabel?: string;
   width?: number | string;
-  height?: number;
-  maxWidth?: number;
-  maxHeight?: number;
-  backgroundColor?: string;
+  height?: number | string;
+  bgColor?: string;
   color?: string;
-  alignSelf?: string;
-  justifySelf?: string;
-  marginTop?: number;
+  mt?: number;
+  mb?: number;
 }
 
 const StyledButton = styled.button<ButtonProps>`
   width: ${({ width }) => width || "100%"};
-  height: ${({ height }) => height || 42}px;
-  max-width: ${({ maxWidth }) => maxWidth || 346}px;
-  max-height: ${({ maxHeight }) => maxHeight || 42}px;
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.color.primary};
-  color: ${({ color, theme }) => color || theme.color.secondary};
+  height: ${({ height }) => height || 50}px;
+  background-color: ${({ bgColor }) => bgColor || "#293744"};
+  color: ${({ color }) => color || "#FFFFFF"};
   border: none;
-  border-radius: 6px;
-  margin-top: ${({ marginTop }) => marginTop}px;
+  border-radius: 5px;
   cursor: pointer;
   font-family: Inter;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: ${({ mt }) => mt}px;
+  margin-bottom: ${({ mb }) => mb}px;
+
+  ${({ isSubmitting }) =>
+    isSubmitting &&
+    css`
+      background: #dfe4ea;
+      cursor: not-allowed;
+    `};
+
+  ${({ isDisabled }) =>
+    isDisabled &&
+    css`
+      background: #dfe4ea;
+      cursor: not-allowed;
+    `};
 `;
 
 export default StyledButton;
