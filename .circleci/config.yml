@@ -1,54 +1,17 @@
-defaults: &defaults
-  docker:
-    - image: circleci/node:8.11.0
-  working_directory: ~/tmp/circlci-now
-
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  checkout:
-    <<: *defaults
+  build-and-test:
+    executor:
+      name: node/default
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/tmp/circlci-now
-      - restore_cache:
-          keys:
-            - npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
-            - npm-cache-{{ .Branch }}
-            - npm-cache-
-      - run:
-          name: yarn
-          command: yarn
-      - save_cache:
-          key: npm-cache-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - persist_to_workspace:
-          root: .
-          paths: .
-  deploy:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/tmp/circlci-now
-      - run:
-          name: Install Now CLI
-          command: sudo npm install --global --unsafe-perm now
-      - deploy:
-          name: Deploy & Alias
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                now --token $MU_TOKEN --local-config now.json --prod
-            elif [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                now --token $MU_TOKEN --local-config now.staging.json
-                now --token $MU_TOKEN --local-config now.staging.json alias
-            else
-                echo ${CIRCLE_BRANCH}
-            fi
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
 workflows:
-  version: 2
-  test-deploy-purge:
-    jobs:
-      - checkout
-      - deploy
+    build-and-test:
+      jobs:
+        - build-and-test
