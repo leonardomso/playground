@@ -19,7 +19,8 @@
     "test:server": "yarn workspace @mu/server test",
     "clean": "yarn workspaces run clean",
     "format": "yarn workspaces run format",
-    "lint": "yarn workspaces run lint"
+    "lint": "yarn workspaces run lint",
+    "lint:staged": "lint-staged"
   },
   "keywords": [],
   "author": "",
