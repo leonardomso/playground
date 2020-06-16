@@ -8,12 +8,10 @@ import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import {
   LoginContainer,
   LoginInsideContainer,
-  LoginTitle
+  LoginTitle,
 } from "./Login.styles";
 
-interface LoginProps {}
-
-const Login: React.FC<LoginProps> = () => (
+const Login = () => (
   <LoginContainer>
     <LoginTitle>mu</LoginTitle>
 

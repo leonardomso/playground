@@ -1,6 +1,6 @@
 import React from "react";
 
-const App: React.FC = () => (
+const App = () => (
   <div>
     <h1>App working</h1>
   </div>

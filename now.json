@@ -56,21 +56,5 @@
       "src": "^/(.*)",
       "dest": "/packages/web/index.html"
     }
-  ],
-  "build": {
-    "env": {
-      "NODE_ENV": "production",
-      "REACT_APP_SERVER": "https://mu.now.sh/graphql",
-      "GRAPHQL_ENDPOINT": "graphql",
-      "PLAYGROUND_ENDPOINT": "playground",
-      "PORT": "4000",
-      "API_SECRET": "SUPER_SECRET_KEY"
-    }
-  },
-  "env": {
-    "GRAPHQL_ENDPOINT": "graphql",
-    "PLAYGROUND_ENDPOINT": "playground",
-    "PORT": "4000",
-    "API_SECRET": "SUPER_SECRET_KEY"
-  }
+  ]
 }
