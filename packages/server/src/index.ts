@@ -1,61 +1,36 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+import Koa from "koa";
+import cors from "@koa/cors";
+import Router from "@koa/router";
+import bodyParser from "koa-bodyparser";
+import logger from "koa-logger";
+import helmet from "koa-helmet";
+import graphqlHttp from "koa-graphql";
+import koaPlayground from "graphql-playground-middleware-koa";
 
-import http from "http";
-import express from "express";
-import session from "express-session";
-import { ApolloServer } from "apollo-server-express";
-import mongoose from "mongoose";
-import uuid from "uuid/v4";
-import cors from "cors";
+import connectDB from "./database";
 
-import schema from "./graphql/";
+import graphql from "./graphql";
 
-const { NODE_ENV, API_URI, API_SECRET, PORT } = process.env;
+dotenv.config();
 
-const app = express();
+const app = new Koa();
+const router = new Router();
 
-const corsOptions = {
-  origin: ["http://localhost:3000"],
-  credentials: true
-};
+const graphqlServer = graphqlHttp(graphql);
 
-const server = new ApolloServer({
-  schema,
-  context: ({ req, res }: any) => ({ req, res }),
-  tracing: true,
-  cacheControl: false,
-  playground: {
-    settings: {
-      "request.credentials": "same-origin"
-    }
-  }
-});
-
-// Connect to MongoDB with Mongoose.
-mongoose
-  .connect(API_URI, {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
-
-app.use(
-  session({
-    genid: () => uuid(),
-    secret: API_SECRET,
-    resave: false,
-    saveUninitialized: false
-  })
+router.all("/graphql", bodyParser(), graphqlServer);
+router.all(
+  "/graphiql",
+  koaPlayground({
+    endpoint: "/graphql",
+  }),
 );
 
-server.applyMiddleware({ app, cors: corsOptions });
+app.listen(process.env.GRAPHQL_PORT);
+app.use(logger());
+app.use(cors());
+app.use(helmet());
+app.use(router.routes()).use(router.allowedMethods());
 
-const httpServer = http.createServer(app);
-
-httpServer.listen({ port: PORT }, () => {
-  console.log(
-    `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
-  );
-});
+connectDB();
