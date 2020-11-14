@@ -1,16 +1,10 @@
+# Playground
 
-# mu
+[![Actions Status](https://github.com/leonardomso/playground/workflows/CI/badge.svg)](https://github.com/leonardomso/playground/actions)
+[![LICENSE MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/leonardomso/playground)
 
-This is a boilerplate for a project, using React for front end and a GraphQL API for back end. Feel free to send any pull requests to improve this boilerplate.
+A playground using React, Emotion, Relay, GraphQL, MongoDB.
 
-## Getting started
+## Contributing
 
-1. Clone this repo using `https://github.com/leonardomso/mu.git`
-2. Move to the appropriate directory: `cd mu`.
-
-## Commands
-
-- `"dev:web"`:  start the app at `http://localhost:3000`
-- `"dev:server"`:  start the server at `http://localhost:4000/graphql`
-
-
+Your contributions are welcome! If you have any questions or want to start to contribute to this project in any form, please open an issue. Feel free to open PR.
