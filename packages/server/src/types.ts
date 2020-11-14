@@ -1,16 +1,18 @@
-import { Request, Response } from "koa";
-
+import mongoose from "mongoose";
 import Dataloader from "dataloader";
 
 import { IUser } from "./modules/User/UserModel";
+import { DataLoaders } from "./modules/Loader/LoaderRegister";
 
-export type Dataloaders = {
-  UserLoader: Dataloader<string, IUser>;
-};
+declare type ObjectId = mongoose.Schema.Types.ObjectId;
 
 export type GraphQLContext = {
-  req: Request;
-  res: Response;
   user?: IUser;
-  dataloaders: Dataloaders;
+  dataloaders: DataLoaders;
+  dataloader: Dataloader<string, any>;
 };
+
+export type LoaderFn = (
+  ctx: GraphQLContext,
+  id: string | ObjectId | object,
+) => any;

@@ -1,9 +1,16 @@
 import { GraphQLString, GraphQLNonNull } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
 
+import { errorField, successField } from "@playground/graphql";
+
 import UserModel from "../UserModel";
 
 import { generateToken } from "../../../utils/auth";
+
+type UserSignInWithEmailArgs = {
+  email: string;
+  password: string;
+};
 
 export default mutationWithClientMutationId({
   name: "UserSignInWithEmail",
@@ -15,12 +22,11 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async ({ email, password }) => {
-    const user = await UserModel.findOne({ email: email.toLowerCase() });
+  mutateAndGetPayload: async ({ email, password }: UserSignInWithEmailArgs) => {
+    const user = await UserModel.findOne({ email: email.trim().toLowerCase() });
 
     if (!user) {
       return {
-        token: null,
         error: "User doesn't exist",
       };
     }
@@ -29,13 +35,13 @@ export default mutationWithClientMutationId({
 
     if (!correctPassword) {
       return {
-        token: null,
         error: "Invalid password",
       };
     }
 
     return {
       token: generateToken(user),
+      success: "Logged in successfully",
       error: null,
     };
   },
@@ -44,9 +50,7 @@ export default mutationWithClientMutationId({
       type: GraphQLString,
       resolve: ({ token }) => token,
     },
-    error: {
-      type: GraphQLString,
-      resolve: ({ error }) => error,
-    },
+    ...errorField,
+    ...successField,
   },
 });

@@ -1,7 +1,14 @@
 import { GraphQLString, GraphQLNonNull } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
 
+import { errorField, successField } from "@playground/graphql";
+
 import { GraphQLContext } from "../../../types";
+
+type UserChangePasswordArgs = {
+  oldPassword: string;
+  newPassword: string;
+};
 
 export default mutationWithClientMutationId({
   name: "UserChangePassword",
@@ -14,7 +21,7 @@ export default mutationWithClientMutationId({
     },
   },
   mutateAndGetPayload: async (
-    { oldPassword, newPassword },
+    { oldPassword, newPassword }: UserChangePasswordArgs,
     { user }: GraphQLContext,
   ) => {
     if (!user) {
@@ -27,7 +34,7 @@ export default mutationWithClientMutationId({
 
     if (!correctPassword) {
       return {
-        error: "INVALID_PASSWORD",
+        error: "Invalid password",
       };
     }
 
@@ -35,18 +42,12 @@ export default mutationWithClientMutationId({
     await user.save();
 
     return {
-      message: "Password updated successfully",
+      success: "Password updated successfully",
       error: null,
     };
   },
   outputFields: {
-    message: {
-      type: GraphQLString,
-      resolve: ({ message }) => message,
-    },
-    error: {
-      type: GraphQLString,
-      resolve: ({ error }) => error,
-    },
+    ...errorField,
+    ...successField,
   },
 });

@@ -1,9 +1,16 @@
 import { GraphQLString, GraphQLNonNull } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
 
+import { errorField, successField } from "@playground/graphql";
+
 import UserModel from "../UserModel";
 
 import { generateToken } from "../../../utils/auth";
+
+type UserSignUpWithEmailArgs = {
+  email: string;
+  password: string;
+};
 
 export default mutationWithClientMutationId({
   name: "UserSignUpWithEmail",
@@ -15,30 +22,26 @@ export default mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async ({ email, password }) => {
-    let user = await UserModel.findOne({ email });
+  mutateAndGetPayload: async ({ email, password }: UserSignUpWithEmailArgs) => {
+    const userExists = await UserModel.findOne({
+      email: email.trim().toLowerCase(),
+    });
 
-    if (user) {
+    if (userExists) {
       return {
-        token: null,
         error: "Email is already in use",
       };
     }
 
-    user = new UserModel({
+    const user = await new UserModel({
       email,
       password,
-      notifications: {
-        weekly: false,
-        news: false,
-      },
-      providers: [],
-    });
-
-    await user.save();
+    }).save();
 
     return {
       token: generateToken(user),
+      success: "Signed up succcessfully",
+      error: null,
     };
   },
   outputFields: {
@@ -46,9 +49,7 @@ export default mutationWithClientMutationId({
       type: GraphQLString,
       resolve: ({ token }) => token,
     },
-    error: {
-      type: GraphQLString,
-      resolve: ({ error }) => error,
-    },
+    ...errorField,
+    ...successField,
   },
 });
