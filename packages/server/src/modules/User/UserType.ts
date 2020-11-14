@@ -1,23 +1,46 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql";
 import { globalIdField } from "graphql-relay";
 
-import { NodeInterface } from "../../interface/NodeInterface";
+import { connectionDefinitions, mongooseIDResolver } from "@playground/graphql";
 
-const UserType: GraphQLObjectType = new GraphQLObjectType({
+import { load } from "./UserLoader";
+
+import { nodeInterface, registerTypeLoader } from "../Node/TypeRegister";
+
+import { IUser } from "./UserModel";
+
+import { GraphQLContext } from "../../types";
+
+const UserType: GraphQLObjectType = new GraphQLObjectType<
+  IUser,
+  GraphQLContext
+>({
   name: "User",
-  description: "User data",
+  description: "UserType",
   fields: () => ({
     id: globalIdField("User"),
-    _id: {
-      type: GraphQLNonNull(GraphQLString),
-      resolve: ({ _id }) => _id,
-    },
+    ...mongooseIDResolver,
     email: {
       type: GraphQLNonNull(GraphQLString),
       resolve: ({ email }) => email,
     },
+    createdAt: {
+      type: GraphQLString,
+      resolve: (obj) => (obj.createdAt ? obj.createdAt.toISOString() : null),
+    },
+    updatedAt: {
+      type: GraphQLString,
+      resolve: (obj) => (obj.updatedAt ? obj.updatedAt.toISOString() : null),
+    },
   }),
-  interfaces: () => [NodeInterface],
+  interfaces: () => [nodeInterface],
 });
 
 export default UserType;
+
+registerTypeLoader(UserType, load);
+
+export const UserConnection = connectionDefinitions({
+  name: "User",
+  nodeType: UserType,
+});
