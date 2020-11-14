@@ -25,7 +25,6 @@
     "graphql:build": "yarn workspace @playground/graphql build",
     "lint:staged": "lint-staged",
     "build": "yarn workspace @playground/web build & yarn workspace @playground/server build",
-    "lint": "yarn workspace @playground/web lint & yarn workspace @playground/server lint",
     "test": "yarn workspace @playground/web test & yarn workspace @playground/server test",
     "update-schema": "yarn workspace @playground/server update-schema",
     "relay": "yarn workspace @playground/web relay"
