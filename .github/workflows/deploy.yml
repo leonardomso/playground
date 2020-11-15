@@ -13,13 +13,13 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "leonardomso-playground-server"
           heroku_email: ${{secrets.HEROKU_API_KEY}}
-        env:
-          HD_APP_BASE: "packages/server"
+          appdir: "server"
+          buildpack: "https://github.com/heroku/heroku-buildpack-nodejs.git"
       - name: Deploy web
         uses: akhileshns/heroku-deploy@v3.0.4
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "leonardomso-playground-web"
           heroku_email: ${{secrets.HEROKU_API_KEY}}
-        env:
-          HD_APP_BASE: "packages/web"
+          appdir: "web"
+          buildpack: "https://github.com/mars/heroku-nextjs.git"

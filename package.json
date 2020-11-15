@@ -24,6 +24,12 @@
     "build": "yarn workspace @playground/web build & yarn workspace @playground/graphql build & yarn workspace @playground/server build",
     "update-schema": "yarn workspace @playground/server update-schema"
   },
+  "resolutions": {
+    "graphql": "^15.3.0"
+  },
+  "dependencies": {
+    "lerna": "^3.22.1"
+  },
   "devDependencies": {
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
@@ -32,22 +38,5 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",
     "typescript": "^4.0.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "yarn lint",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "lerna": "^3.22.1"
-  },
-  "resolutions": {
-    "graphql": "^15.3.0"
   }
 }
