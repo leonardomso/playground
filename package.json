@@ -25,7 +25,7 @@
     "update-schema": "yarn workspace @playground/server update-schema"
   },
   "resolutions": {
-    "graphql": "^15.3.0"
+    "graphql": "^15.4.0"
   },
   "dependencies": {
     "lerna": "^3.22.1"
