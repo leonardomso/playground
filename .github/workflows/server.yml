@@ -16,4 +16,4 @@ jobs:
       - name: Add server remote origin
         run: git remote add leonardomso-playground-server https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/${{ secrets.HEROKU_SERVER_NAME }}.git
       - name: Deploy server to Heroku
-        run: git push leonardomso-playground-server `git subtree split --prefix server master`:refs/heads/master --force
+        run: git push leonardomso-playground-server `git subtree split --prefix leonardomso-playground-server master`:refs/heads/master --force
