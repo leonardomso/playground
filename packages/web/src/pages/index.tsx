@@ -1,18 +1,5 @@
-import Head from 'next/head'
+import Home from "src/modules/Home/Home";
 
-const Home = () => {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const Index = () => <Home />
 
-      <div>
-        <h1>Home</h1>
-      </div>
-    </div>
-  )
-};
-
-export default Home;
+export default Index;
