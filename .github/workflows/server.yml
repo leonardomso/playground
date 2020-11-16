@@ -1,11 +1,11 @@
-name: Deploy server to Heroku (GraphQL)
+name: Deploy server to Heroku
 
 on:
   push:
     branches:
       - master
     paths:
-      - "server/**"
+      - "packages/server/**"
       - ".github/workflows/server.yml"
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Add Playground GraphQL server remote origin
-        run: git remote add playground-server-graphql https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/${{ secrets.HEROKU_BACKEND_APP_NAME }}.git
-      - name: Deploy Playground GraphQL server to Heroku
-        run: git push playground-server-graphql `git subtree split --prefix packages/server master`:refs/heads/master --force
+      - name: Add server remote origin
+        run: git remote add leonardomso-playground-server https://heroku:${{ secrets.HEROKU_API_TOKEN }}@git.heroku.com/${{ secrets.HEROKU_SERVER_NAME }}.git
+      - name: Deploy server to Heroku
+        run: git push leonardomso-playground-server `git subtree split --prefix server master`:refs/heads/master --force
