@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.loadAll = exports.load = exports.clearCache = exports.getLoader = void 0;
 
-var _graphql = require("@playground/graphql");
+var _common = require("../../common");
 
 var _LoaderRegister = require("../Loader/LoaderRegister");
 
@@ -19,7 +19,7 @@ const {
   clearCache,
   load,
   loadAll
-} = (0, _graphql.createLoader)({
+} = (0, _common.createLoader)({
   model: _UserModel.default,
   loaderName: "UserLoader"
 });

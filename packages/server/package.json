@@ -26,6 +26,7 @@
     "@babel/plugin-transform-async-to-generator": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
+    "@entria/graphql-mongo-helpers": "^0.0.1",
     "@entria/graphql-mongoose-loader": "^4.3.2",
     "@koa/cors": "^3.1.0",
     "@koa/router": "^9.4.0",

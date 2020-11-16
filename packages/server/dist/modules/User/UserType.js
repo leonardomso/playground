@@ -9,7 +9,7 @@ var _graphql = require("graphql");
 
 var _graphqlRelay = require("graphql-relay");
 
-var _graphql2 = require("@playground/graphql");
+var _common = require("../../common");
 
 var _UserLoader = require("./UserLoader");
 
@@ -26,7 +26,7 @@ const UserType = new _graphql.GraphQLObjectType({
   description: "UserType",
   fields: () => _objectSpread(_objectSpread({
     id: (0, _graphqlRelay.globalIdField)("User")
-  }, _graphql2.mongooseIDResolver), {}, {
+  }, _common.mongooseIDResolver), {}, {
     email: {
       type: (0, _graphql.GraphQLNonNull)(_graphql.GraphQLString),
       resolve: ({
@@ -47,7 +47,7 @@ const UserType = new _graphql.GraphQLObjectType({
 var _default = UserType;
 exports.default = _default;
 (0, _TypeRegister.registerTypeLoader)(UserType, _UserLoader.load);
-const UserConnection = (0, _graphql2.connectionDefinitions)({
+const UserConnection = (0, _common.connectionDefinitions)({
   name: "User",
   nodeType: UserType
 });

@@ -1,4 +1,4 @@
-import { createLoader } from "@playground/graphql";
+import { createLoader } from "../../common";
 
 import { registerLoader } from "../Loader/LoaderRegister";
 

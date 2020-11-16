@@ -9,7 +9,7 @@ var _graphql = require("graphql");
 
 var _graphqlRelay = require("graphql-relay");
 
-var _graphql2 = require("@playground/graphql");
+var _common = require("../../../common");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -64,7 +64,7 @@ var _default = (0, _graphqlRelay.mutationWithClientMutationId)({
       return _ref.apply(this, arguments);
     };
   }(),
-  outputFields: _objectSpread(_objectSpread({}, _graphql2.errorField), _graphql2.successField)
+  outputFields: _objectSpread(_objectSpread({}, _common.errorField), _common.successField)
 });
 
 exports.default = _default;

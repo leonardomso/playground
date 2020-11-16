@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLNonNull } from "graphql";
 import { globalIdField } from "graphql-relay";
 
-import { connectionDefinitions, mongooseIDResolver } from "@playground/graphql";
+import { connectionDefinitions, mongooseIDResolver } from "../../common";
 
 import { load } from "./UserLoader";
 

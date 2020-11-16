@@ -33,7 +33,7 @@ router.all("/graphql", (0, _koaBodyparser.default)(), graphqlServer);
 router.all("/graphiql", (0, _graphqlPlaygroundMiddlewareKoa.default)({
   endpoint: "/graphql"
 }));
-app.listen(process.env.GRAPHQL_PORT);
+app.listen(process.env.PORT || 4000);
 app.use((0, _koaLogger.default)());
 app.use((0, _cors.default)());
 app.use((0, _koaHelmet.default)({

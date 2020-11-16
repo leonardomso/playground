@@ -9,7 +9,7 @@ var _graphql = require("graphql");
 
 var _graphqlRelay = require("graphql-relay");
 
-var _graphql2 = require("@playground/graphql");
+var _common = require("../../../common");
 
 var _UserModel = _interopRequireDefault(require("../UserModel"));
 
@@ -78,7 +78,7 @@ var _default = (0, _graphqlRelay.mutationWithClientMutationId)({
         token
       }) => token
     }
-  }, _graphql2.errorField), _graphql2.successField)
+  }, _common.errorField), _common.successField)
 });
 
 exports.default = _default;
