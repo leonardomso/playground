@@ -51,7 +51,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/koa": "^2.11.4",
     "@types/koa-bodyparser": "^4.3.0",
-    "@types/koa-helmet": "^5.2.0",
+    "@types/koa-helmet": "^6.0.1",
     "@types/koa-logger": "^3.1.1",
     "@types/koa-mount": "^4.0.0",
     "@types/koa-passport": "^4.0.2",
