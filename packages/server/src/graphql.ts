@@ -1,11 +1,11 @@
-import { Request, Response } from "koa";
+import { Request } from "koa";
 import { GraphQLError } from "graphql";
 
 import { schema } from "./graphql/schema";
 import { getUser } from "./utils/auth";
 import { getDataloaders } from "./modules/Loader/LoaderRegister";
 
-const graphql = async (req: Request, res: Response) => {
+const graphql = async (req: Request) => {
   const { user } = await getUser(req.header.authorization);
 
   const dataloaders = getDataloaders();

@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _mongoose = _interopRequireWildcard(require("mongoose"));
 
-var _bcrypt = _interopRequireDefault(require("bcrypt"));
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46,18 +46,18 @@ const UserSchema = new _mongoose.Schema({
 UserSchema.pre("save", function (next) {
   if (!this.isModified("password")) return next();
   if (!this.password) return next();
-  return _bcrypt.default.hash(this.password, 8).then(hash => {
+  return _bcryptjs.default.hash(this.password, 8).then(hash => {
     this.password = hash;
     next();
   });
 });
 UserSchema.methods = {
   authenticate(plainTextPassword) {
-    return _bcrypt.default.compareSync(plainTextPassword, this.password);
+    return _bcryptjs.default.compareSync(plainTextPassword, this.password);
   },
 
   encryptPassword(password) {
-    return _bcrypt.default.hashSync(password, 8);
+    return _bcryptjs.default.hashSync(password, 8);
   }
 
 };

@@ -7,7 +7,7 @@ exports.getUser = getUser;
 exports.generateToken = generateToken;
 exports.authenticate = authenticate;
 
-var _bcrypt = _interopRequireDefault(require("bcrypt"));
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
@@ -58,6 +58,6 @@ function generateToken(user) {
 }
 
 function authenticate(plainTextPassword) {
-  return _bcrypt.default.compare(plainTextPassword, this.password);
+  return _bcryptjs.default.compare(plainTextPassword, this.password);
 }
 //# sourceMappingURL=auth.js.map

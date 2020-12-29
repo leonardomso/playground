@@ -16,7 +16,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 const graphql = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator(function* (req, res) {
+  var _ref = _asyncToGenerator(function* (req) {
     const {
       user
     } = yield (0, _auth.getUser)(req.header.authorization);
@@ -46,7 +46,7 @@ const graphql = /*#__PURE__*/function () {
     };
   });
 
-  return function graphql(_x, _x2) {
+  return function graphql(_x) {
     return _ref.apply(this, arguments);
   };
 }();
