@@ -13,20 +13,23 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Use cached node_modules
-        uses: actions/cache@v1
+      - name: Cache node_modules
+        uses: actions/cache@v2
         with:
-          path: node_modules
-          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            nodeModules-
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         env:
           CI: true
 
-      - name: Build
-        run: yarn build
+      - name: Build server
+        run: yarn server:build
+        env:
+          CI: true
+
+      - name: Build web
+        run: yarn web:build
         env:
           CI: true
